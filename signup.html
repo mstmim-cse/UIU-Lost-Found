@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up | UIU Lost & Found</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="display: flex; min-height: 100vh; background-color: var(--bg-color); margin: 0; overflow-x: hidden;">
+
+    <!-- Left Side: Image / Illustration -->
+    <div class="signup-split-image" style="flex: 1; display: none; background: url('assets/campus_bg.png') center/cover no-repeat; position: relative;">
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.8));"></div>
+        <div style="position: absolute; bottom: 40px; left: 40px; color: white; max-width: 400px;">
+            <h2 style="font-size: 2.5rem; margin-bottom: 16px;">Join the Community</h2>
+            <p style="font-size: 1.125rem; color: #e2e8f0;">Help keep the United International University campus connected. Report lost items, claim found ones, and earn trust points.</p>
+        </div>
+    </div>
+
+    <!-- Right Side: Form -->
+    <div style="flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px;">
+        <div class="card" style="width: 100%; max-width: 450px; padding: 40px; text-align: center; border: none; box-shadow: none; background: transparent;">
+            <a href="index.html" class="logo" style="justify-content: center; margin-bottom: 32px; font-size: 2rem;">
+                <i class="fas fa-search-location"></i> UIU L&F
+            </a>
+            
+            <h2 style="margin-bottom: 8px;">Create an Account</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 32px;">Sign up with your UIU student email</p>
+
+            <form action="dashboard.html" method="GET">
+                <div class="form-group" style="text-align: left;">
+                    <label class="form-label">Full Name</label>
+                    <input type="text" class="form-control" placeholder="e.g. John Doe" required>
+                </div>
+                
+                <div class="form-group" style="text-align: left;">
+                    <label class="form-label">UIU Email</label>
+                    <input type="email" class="form-control" placeholder="e.g. jdoe211@bscse.uiu.ac.bd" pattern=".*@.*uiu\.ac\.bd$" title="Please use a valid @uiu.ac.bd email address" required>
+                </div>
+                
+                <div class="form-group" style="text-align: left; position: relative;">
+                    <label class="form-label">Password</label>
+                    <div style="position: relative;">
+                        <input type="password" class="form-control" id="signupPassword" placeholder="••••••••" required>
+                        <i class="fas fa-eye toggle-password" data-target="signupPassword" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-secondary);"></i>
+                    </div>
+                </div>
+
+                <div class="form-group" style="text-align: left; position: relative;">
+                    <label class="form-label">Confirm Password</label>
+                    <div style="position: relative;">
+                        <input type="password" class="form-control" id="signupConfirmPassword" placeholder="••••••••" required>
+                        <i class="fas fa-eye toggle-password" data-target="signupConfirmPassword" style="position: absolute; right: 16px; top: 50%; transform: translateY(-50%); cursor: pointer; color: var(--text-secondary);"></i>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px;">Sign Up</button>
+            </form>
+
+            <div style="margin-top: 32px; position: relative; text-align: center;">
+                <hr style="border: 0; border-top: 1px solid var(--border-color);">
+                <span style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: var(--bg-color); padding: 0 16px; color: var(--text-secondary); font-size: 0.875rem;">OR</span>
+            </div>
+
+            <p style="margin-top: 32px; color: var(--text-secondary); font-size: 0.875rem;">
+                Already have an account? <a href="login.html" style="color: var(--primary); font-weight: 500;">Log in</a>
+            </p>
+        </div>
+    </div>
+
+    <!-- Inject CSS for the split layout responsiveness -->
+    <style>
+        @media (min-width: 768px) {
+            .signup-split-image {
+                display: block !important;
+            }
+        }
+    </style>
+
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

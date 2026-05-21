@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings | UIU Lost & Found</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Toggle Switch CSS */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 28px;
+        }
+        .switch input { 
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #cbd5e1;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: var(--primary);
+        }
+        input:focus + .slider {
+            box-shadow: 0 0 1px var(--primary);
+        }
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+        [data-theme='dark'] .slider {
+            background-color: #475569;
+        }
+        [data-theme='dark'] input:checked + .slider {
+            background-color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-search-location"></i> UIU L&F
+            </a>
+            
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="post.html" class="nav-link">Post Item</a></li>
+                    <li><a href="profile.html" class="nav-link">Profile</a></li>
+                </ul>
+
+                <div class="nav-actions" id="navActions">
+                    <!-- Logged Out State -->
+                    <div id="loggedOutState" style="display: none;">
+                        <a href="login.html" class="btn btn-primary">Login</a>
+                    </div>
+                    
+                    <!-- Logged In State -->
+                    <div id="loggedInState" style="display: flex; align-items: center; gap: 16px;">
+                        <div style="position: relative;">
+                            <button class="btn-icon" id="notifBtn">
+                                <i class="fas fa-bell"></i>
+                                <span style="position: absolute; top: 4px; right: 4px; width: 8px; height: 8px; background-color: var(--danger); border-radius: 50%;"></span>
+                            </button>
+                            <!-- Notification Panel -->
+                            <div class="notification-panel" id="notifPanel">
+                                <div class="notification-header">
+                                    <h4>Notifications</h4>
+                                    <a href="#" style="font-size: 0.875rem; color: var(--primary);">Mark all read</a>
+                                </div>
+                                <div class="notification-list">
+                                    <div class="notification-item unread">
+                                        <i class="fas fa-comment text-primary mt-1"></i>
+                                        <div>
+                                            <p style="font-size: 0.875rem; margin-bottom: 4px;">Someone commented on your post 'MacBook Charger'</p>
+                                            <span style="font-size: 0.75rem; color: var(--text-secondary);">2 mins ago</span>
+                                        </div>
+                                    </div>
+                                    <div class="notification-item">
+                                        <i class="fas fa-check-circle text-success mt-1" style="color: var(--success);"></i>
+                                        <div>
+                                            <p style="font-size: 0.875rem; margin-bottom: 4px;">Your claimed item 'Blue Water Bottle' was approved</p>
+                                            <span style="font-size: 0.75rem; color: var(--text-secondary);">1 day ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <a href="settings.html" class="btn-icon active-icon"><i class="fas fa-cog"></i></a>
+                        
+                        <div style="position: relative; display: flex; align-items: center;">
+                            <button class="profile-avatar-btn" id="profileBtn">
+                                <img src="https://ui-avatars.com/api/?name=Mst+Mim&background=f97316&color=fff" alt="User Avatar" class="profile-avatar">
+                            </button>
+                            
+                            <!-- Profile Dropdown -->
+                            <div class="profile-dropdown" id="profileDropdown">
+                                <div class="dropdown-header">
+                                    <img src="https://ui-avatars.com/api/?name=Mst+Mim&background=f97316&color=fff" alt="User Avatar" class="dropdown-avatar">
+                                    <div>
+                                        <h4>Mst. Mim</h4>
+                                        <p style="margin-bottom: 2px;">mst.mim@uiu.ac.bd</p>
+                                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;"><i class="fas fa-coins text-warning"></i> <span class="display-reward-points">120</span> pts</span>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li><a href="profile.html"><i class="fas fa-user"></i> My Profile</a></li>
+                                    <li><a href="dashboard.html"><i class="fas fa-th-large"></i> Dashboard</a></li>
+                                    <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a href="#" id="logoutBtn" style="color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="section">
+        <div class="container" style="max-width: 800px;">
+            <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 32px;">
+                <a href="javascript:history.back()" class="btn-icon" style="background: var(--surface-color); border: 1px solid var(--border-color);"><i class="fas fa-arrow-left"></i></a>
+                <h1 style="margin: 0;">Settings</h1>
+            </div>
+
+            <div class="card" style="padding: 0;">
+                <div style="padding: 24px; border-bottom: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 8px;">Appearance</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem;">Customize how the UIU Lost & Found interface looks on your device.</p>
+                </div>
+                <div style="padding: 24px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4 style="margin-bottom: 4px;">Dark Mode</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem;">Switch between light and dark themes.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="themeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="card" style="padding: 0; margin-top: 24px;">
+                <div style="padding: 24px; border-bottom: 1px solid var(--border-color);">
+                    <h3 style="margin-bottom: 8px;">Notifications</h3>
+                    <p style="color: var(--text-secondary); font-size: 0.875rem;">Manage your email and push notifications.</p>
+                </div>
+                <div style="padding: 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color);">
+                    <div>
+                        <h4 style="margin-bottom: 4px;">Email Alerts</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem;">Get emails when someone claims your item.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div style="padding: 24px; display: flex; justify-content: space-between; align-items: center;">
+                    <div>
+                        <h4 style="margin-bottom: 4px;">Push Notifications</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.875rem;">Receive browser notifications for new matches.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <button class="btn btn-secondary" style="color: var(--danger); border-color: var(--danger);">Log Out</button>
+            </div>
+        </div>
+    </main>
+
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

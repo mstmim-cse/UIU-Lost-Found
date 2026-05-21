@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | UIU Lost & Found</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <i class="fas fa-search-location"></i> UIU L&F <span class="badge badge-returned" style="margin-left: 8px;">Admin</span>
+            </a>
+            
+            <div class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-links">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="dashboard.html" class="nav-link">Dashboard</a></li>
+                    <li><a href="admin.html" class="nav-link active">Admin Panel</a></li>
+                </ul>
+
+                <div class="nav-actions" id="navActions">
+                    <div id="loggedInState" style="display: flex; align-items: center; gap: 16px;">
+                        <div style="position: relative; display: flex; align-items: center;">
+                            <button class="profile-avatar-btn" id="profileBtn" aria-label="Profile Menu">
+                                <img src="https://ui-avatars.com/api/?name=Admin+User&background=0ea5e9&color=fff" alt="Admin Avatar" class="profile-avatar">
+                            </button>
+                            
+                            <!-- Profile Dropdown -->
+                            <div class="profile-dropdown" id="profileDropdown">
+                                <div class="dropdown-header">
+                                    <img src="https://ui-avatars.com/api/?name=Admin+User&background=0ea5e9&color=fff" alt="Admin Avatar" class="dropdown-avatar">
+                                    <div>
+                                        <h4>Admin User</h4>
+                                        <p style="margin-bottom: 2px;">admin@uiu.ac.bd</p>
+                                        <span style="font-size: 0.75rem; color: var(--primary); font-weight: 600;"><i class="fas fa-coins text-warning"></i> <span class="display-reward-points">120</span> pts</span>
+                                    </div>
+                                </div>
+                                <ul class="dropdown-menu">
+                                    <li><a href="dashboard.html"><i class="fas fa-th-large"></i> User Dashboard</a></li>
+                                    <li class="dropdown-divider"></li>
+                                    <li><a href="#" id="logoutBtn" style="color: var(--danger);"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="section" style="padding-top: 40px; min-height: calc(100vh - 72px);">
+        <div class="container">
+            <div class="grid grid-cols-4" style="gap: 32px;">
+                
+                <!-- Admin Sidebar -->
+                <div class="card" style="padding: 24px; align-self: start; grid-column: span 1;">
+                    <h3 style="margin-bottom: 24px; font-size: 1.25rem;">Moderator Panel</h3>
+                    <div class="tabs" data-parent="adminContent" style="display: flex; flex-direction: column; border-bottom: none; gap: 8px;">
+                        <div class="tab active" data-target="pendingTab" style="padding: 12px 16px; border-radius: var(--radius-sm); text-align: left; width: 100%;"><i class="fas fa-clock" style="width: 24px;"></i> Pending Posts</div>
+                        <div class="tab" data-target="usersTab" style="padding: 12px 16px; border-radius: var(--radius-sm); text-align: left; width: 100%;"><i class="fas fa-users" style="width: 24px;"></i> Manage Users</div>
+                        <div class="tab" data-target="disputesTab" style="padding: 12px 16px; border-radius: var(--radius-sm); text-align: left; width: 100%;"><i class="fas fa-exclamation-circle" style="width: 24px;"></i> Disputes</div>
+                    </div>
+                </div>
+
+                <!-- Admin Content -->
+                <div id="adminContent" style="grid-column: span 3;">
+                    
+                    <!-- Pending Posts Tab -->
+                    <div class="tab-content active" id="pendingTab">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+                            <h2>Review Pending Posts</h2>
+                            <span class="badge badge-warning" style="font-size: 0.875rem; padding: 6px 12px;">3 Pending</span>
+                        </div>
+                        
+                        <div class="card" style="overflow: hidden;">
+                            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                                <thead style="background-color: var(--bg-color); border-bottom: 1px solid var(--border-color);">
+                                    <tr>
+                                        <th style="padding: 16px 24px; font-weight: 600;">Item</th>
+                                        <th style="padding: 16px 24px; font-weight: 600;">Type</th>
+                                        <th style="padding: 16px 24px; font-weight: 600;">User</th>
+                                        <th style="padding: 16px 24px; font-weight: 600;">Date</th>
+                                        <th style="padding: 16px 24px; font-weight: 600; text-align: right;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 16px 24px;">
+                                            <div style="display: flex; align-items: center; gap: 12px;">
+                                                <img src="https://images.unsplash.com/photo-1544816155-12df9643f363?w=100&q=80" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                                                <strong>Calculus Book</strong>
+                                            </div>
+                                        </td>
+                                        <td style="padding: 16px 24px;"><span class="badge badge-found">Found</span></td>
+                                        <td style="padding: 16px 24px;">John Doe</td>
+                                        <td style="padding: 16px 24px; color: var(--text-secondary);">Today, 10:00 AM</td>
+                                        <td style="padding: 16px 24px; text-align: right;">
+                                            <button class="btn btn-success" style="padding: 6px 12px; font-size: 0.875rem;" onclick="toast.show('Post Approved')"><i class="fas fa-check"></i></button>
+                                            <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.875rem; color: var(--danger); border-color: var(--danger);" onclick="toast.show('Post Rejected')"><i class="fas fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 16px 24px;">
+                                            <div style="display: flex; align-items: center; gap: 12px;">
+                                                <div style="width: 40px; height: 40px; border-radius: 8px; background: var(--bg-color); display: flex; align-items: center; justify-content: center; color: var(--text-secondary);"><i class="fas fa-image"></i></div>
+                                                <strong>Blue Umbrella</strong>
+                                            </div>
+                                        </td>
+                                        <td style="padding: 16px 24px;"><span class="badge badge-lost">Lost</span></td>
+                                        <td style="padding: 16px 24px;">Alice Smith</td>
+                                        <td style="padding: 16px 24px; color: var(--text-secondary);">Yesterday</td>
+                                        <td style="padding: 16px 24px; text-align: right;">
+                                            <button class="btn btn-success" style="padding: 6px 12px; font-size: 0.875rem;" onclick="toast.show('Post Approved')"><i class="fas fa-check"></i></button>
+                                            <button class="btn btn-secondary" style="padding: 6px 12px; font-size: 0.875rem; color: var(--danger); border-color: var(--danger);" onclick="toast.show('Post Rejected')"><i class="fas fa-times"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Manage Users Tab -->
+                    <div class="tab-content" id="usersTab">
+                        <h2>Manage Users</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 24px;">View and manage registered UIU students.</p>
+                        
+                        <div class="card" style="overflow: hidden;">
+                            <table style="width: 100%; border-collapse: collapse; text-align: left;">
+                                <thead style="background-color: var(--bg-color); border-bottom: 1px solid var(--border-color);">
+                                    <tr>
+                                        <th style="padding: 16px 24px; font-weight: 600;">Student Name</th>
+                                        <th style="padding: 16px 24px; font-weight: 600;">Email</th>
+                                        <th style="padding: 16px 24px; font-weight: 600;">Reputation</th>
+                                        <th style="padding: 16px 24px; font-weight: 600; text-align: right;">Moderation Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 16px 24px;">
+                                            <strong>Jane Doe</strong>
+                                        </td>
+                                        <td style="padding: 16px 24px; color: var(--text-secondary);">jane.doe@uiu.ac.bd</td>
+                                        <td style="padding: 16px 24px;"><span class="badge display-reward-badge badge-bg" style="border: 1px solid;"></span></td>
+                                        <td style="padding: 16px 24px; text-align: right; display: flex; gap: 8px; justify-content: flex-end;">
+                                            <button class="btn btn-secondary btn-sm" onclick="RewardSystem.addPoints(15, 'Helpful Contribution (Admin Vote)'); toast.show('Helpful vote added (+15 pts)')" style="color: var(--success); border-color: var(--success);"><i class="fas fa-thumbs-up"></i> Vote Helpful</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="RewardSystem.removePoints(25, 'Fake Claim Warning (Admin Action)'); toast.show('User warned and penalized (-25 pts)', 'warning')" style="color: var(--danger); border-color: var(--danger);"><i class="fas fa-exclamation-triangle"></i> Warn/Penalty</button>
+                                        </td>
+                                    </tr>
+                                    <tr style="border-bottom: 1px solid var(--border-color);">
+                                        <td style="padding: 16px 24px;">
+                                            <strong>John Smith</strong>
+                                        </td>
+                                        <td style="padding: 16px 24px; color: var(--text-secondary);">john.smith@uiu.ac.bd</td>
+                                        <td style="padding: 16px 24px;"><span class="badge" style="background-color: rgba(59, 130, 246, 0.1); color: #3b82f6;"><i class="fas fa-hands-helping" style="margin-right: 4px;"></i> Helpful Student</span></td>
+                                        <td style="padding: 16px 24px; text-align: right; display: flex; gap: 8px; justify-content: flex-end;">
+                                            <button class="btn btn-secondary btn-sm" onclick="RewardSystem.addPoints(15, 'Helpful Contribution (Admin Vote)'); toast.show('Helpful vote added (+15 pts)')" style="color: var(--success); border-color: var(--success);"><i class="fas fa-thumbs-up"></i> Vote Helpful</button>
+                                            <button class="btn btn-secondary btn-sm" onclick="RewardSystem.removePoints(25, 'Fake Claim Warning (Admin Action)'); toast.show('User warned and penalized (-25 pts)', 'warning')" style="color: var(--danger); border-color: var(--danger);"><i class="fas fa-exclamation-triangle"></i> Warn/Penalty</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Disputes Tab -->
+                    <div class="tab-content" id="disputesTab">
+                        <h2>Dispute Resolution</h2>
+                        <p style="color: var(--text-secondary); margin-bottom: 24px;">Handle contested claims and false claim reports.</p>
+                        
+                        <div class="card" style="padding: 32px; text-align: center;">
+                            <i class="fas fa-gavel" style="font-size: 3rem; color: var(--text-secondary); margin-bottom: 16px;"></i>
+                            <h3>No Active Disputes</h3>
+                            <p style="color: var(--text-secondary);">All is peaceful on campus. Great job!</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer style="background-color: var(--surface-color); padding: 40px 0; border-top: 1px solid var(--border-color); text-align: center; margin-top: auto;">
+        <div class="container">
+            <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                &copy; 2026 UIU Lost & Found. 
+                | <a href="faq.html" style="color: var(--primary); text-decoration: none;">FAQ</a>
+                | <a href="privacy.html" style="color: var(--primary); text-decoration: none;">Privacy Policy</a>
+                | <a href="terms.html" style="color: var(--primary); text-decoration: none;">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    document.querySelectorAll('.tab-content').forEach(c => {
+                        c.classList.remove('active');
+                    });
+                    
+                    const targetId = this.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
